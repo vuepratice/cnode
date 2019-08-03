@@ -5,5 +5,6 @@ export function oneOf (value, validList) {
       return true
     }
   }
+  console.log('b')
   return false
 }
