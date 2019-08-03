@@ -1,7 +1,8 @@
+// 首页api
 import request from '@/http'
 
 // 获取主题列表
-export function getList (params) {
+export function getTopic (params) {
   return request({
     url: '/topics',
     method: 'get',

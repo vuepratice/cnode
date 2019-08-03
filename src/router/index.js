@@ -12,7 +12,10 @@ export default new Router({
         {
           path: '',
           name: 'home',
-          component: () => import('@/views/home')
+          components: {
+            default: () => import('@/views/home'),
+            rightBar: () => import('@/views/rightBar')
+          }
         }
       ]
     },

@@ -51,6 +51,7 @@ export default {
     display: inline-block;
     width: 120px;
     padding: 3px 20px;
+    padding-left: 0;
     height: 34px;
     line-height: 34px;
     color: #ccc;
