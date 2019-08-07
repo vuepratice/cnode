@@ -1,10 +1,10 @@
 <template>
   <div>
-    home
     <!-- 左侧 -->
     <div>
       <!-- 主题列表 -->
       <Topic/>
+      <TopicNavbar/>
       <div class = "inner">
         <TopList
          v-for = "item in list"
@@ -13,6 +13,8 @@
          :reply_count = "item.reply_count"
          :visit_count = "item.visit_count"
          :tab = "item.tab"
+         :authorname = "item.author.loginname"
+         :avatar_url = "item.author.avatar_url"
         />
       </div>
     </div>
@@ -22,7 +24,7 @@
 <script>
 import Topic from '@/components/Topic'
 import TopicNavbar from '@/components/TopicNavbar/TopicNavbar.vue'
-import TopList from '@components/TopList/TopList.vue'
+import TopList from '@/components/TopList/TopList.vue'
 import { getTopic } from '@/api'
 export default {
   components: { Topic, TopicNavbar, TopList },
@@ -42,7 +44,6 @@ export default {
       console.log(res) // 打印原数据
       this.list = res.data.data
       console.log(this.list) // 打印对象里的data
-      
     })
   },
   watch: {
