@@ -1,6 +1,6 @@
 <template>
     <div class = "topic-navbar">
-      <a>全部</a>
+      <a class = "current-tab">全部</a>
       <a>精华</a>
       <a>分享</a>
       <a>问答</a>
@@ -21,6 +21,7 @@ export default {
         color: green;
         font-size: 14px;
         text-align: left;
+        background: #f6f6f6;
         a{
             font-size: 14px;
             margin:0 10px;
