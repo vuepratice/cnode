@@ -1,6 +1,6 @@
 <template>
   <div>
-    home
+    <TopicNavbar/>
     <!-- 左侧 -->
     <div>
       <!-- 主题列表 -->
@@ -11,9 +11,11 @@
 
 <script>
 import Topic from '@/components/Topic'
+import TopicNavbar from '@/components/TopicNavbar'
 import { getTopic } from '@/api'
+
 export default {
-  components: { Topic },
+  components: { Topic, TopicNavbar },
   data () {
     return {
       list: [] // 数据列表
@@ -28,6 +30,8 @@ export default {
   created () {
     getTopic({ page: 1, tab: '', limit: 20 }).then((res) => {
       console.log(res)
+      this.list = res
+      console.log(this.list.data.data)
     })
   },
   watch: {
