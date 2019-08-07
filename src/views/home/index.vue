@@ -5,15 +5,27 @@
     <div>
       <!-- 主题列表 -->
       <Topic/>
+      <div class = "inner">
+        <TopList
+         v-for = "item in list"
+         :key = "item.id"
+         :title = "item.title"
+         :reply_count = "item.reply_count"
+         :visit_count = "item.visit_count"
+         :tab = "item.tab"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Topic from '@/components/Topic'
+import TopicNavbar from '@/components/TopicNavbar/TopicNavbar.vue'
+import TopList from '@components/TopList/TopList.vue'
 import { getTopic } from '@/api'
 export default {
-  components: { Topic },
+  components: { Topic, TopicNavbar, TopList },
   data () {
     return {
       list: [] // 数据列表
@@ -27,7 +39,10 @@ export default {
   },
   created () {
     getTopic({ page: 1, tab: '', limit: 20 }).then((res) => {
-      console.log(res)
+      console.log(res) // 打印原数据
+      this.list = res.data.data
+      console.log(this.list) // 打印对象里的data
+      
     })
   },
   watch: {
