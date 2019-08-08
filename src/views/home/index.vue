@@ -13,6 +13,10 @@
          :reply_count = "item.reply_count"
          :visit_count = "item.visit_count"
          :tab = "item.tab"
+         :avatar_url = "item.author.avatar_url"
+         :loginname = "item.author.loginname"
+         :title_url = "item.id"
+         :reply_time = "item.last_reply_at"
         />
       </div>
     </div>
@@ -40,7 +44,7 @@ export default {
   },
   created () {
     getTopic({ page: 1, tab: '', limit: 20 }).then((res) => {
-      console.log(res) // 打印原数据
+      // console.log(res) // 打印原数据
       this.list = res.data.data
       console.log(this.list) // 打印数据中data对象
     })
