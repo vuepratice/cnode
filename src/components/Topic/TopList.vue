@@ -1,5 +1,5 @@
 <template>
-    <div class = "topic_list">
+    <div class = "topic_list" :class = "classobject">
         <a class = "author" href="#1"><img :src="avatar_url" :title="loginname"></a>
         <span class = "replay_count">{{reply_count}}/{{visit_count}}</span>
         <a class = "last_time" href="#2">{{reply_time|dispalyreplytime}}</a>
@@ -47,10 +47,15 @@ Vue.filter('dispalyreplytime', function (value) {
 export default {
   name: 'TopList',
   props: ['title', 'reply_count', 'visit_count',
-    'tab', 'loginname', 'avatar_url', 'title_url', 'reply_time'],
+    'tab', 'loginname', 'avatar_url', 'title_url',
+    'reply_time', 'index'],
   data () {
     return {
-      st: this.tab
+      st: this.tab,
+      // isactive: true,
+      classobject: {
+        first: false
+      }
     }
   },
   computed: {
@@ -66,6 +71,13 @@ export default {
       } else {
         return '其他'
       }
+    },
+    classobject: function () {
+      if (this.index === 0) {
+        return {
+          first: true
+        }
+      }
     }
   }
 }
@@ -77,6 +89,7 @@ export default {
         position: relative;
         padding: 10px;
         line-height: 2em;
+        border-top: 1px solid #f0f0f0;
         .author {
           display: inline-block;
           float: left;
@@ -99,6 +112,7 @@ export default {
           display: inline-block;
           float: right;
           font-size: 11px;
+          color: #778087;
         }
         div {
           span {
@@ -119,9 +133,18 @@ export default {
             text-overflow: ellipsis;
             overflow: hidden;
           }
+          .toptic_title:hover {
+            text-decoration: underline;
+          }
           .toptic_title:visited {
             color: #888;
           }
         }
+    }
+    .topic_list:hover {
+      background-color: #f5f5f5;
+    }
+    .first {
+      border-top: 0; // 话题首航去掉top边框
     }
 </style>

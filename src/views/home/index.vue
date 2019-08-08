@@ -9,6 +9,7 @@
         <TopList
          v-for = "item in list"
          :key = "item.id"
+         :index = "item.index"
          :title = "item.title"
          :reply_count = "item.reply_count"
          :visit_count = "item.visit_count"
