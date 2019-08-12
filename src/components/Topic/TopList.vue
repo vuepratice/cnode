@@ -1,83 +1,33 @@
 <template>
-    <div class = "topic_list" :class = "classobject">
-        <a class = "author" href="#1"><img :src="avatar_url" :title="loginname"></a>
-        <span class = "replay_count">{{reply_count}}/{{visit_count}}</span>
-        <a class = "last_time" href="#2">{{reply_time|dispalyreplytime}}</a>
+  <div>
+    <div class = "topic_list" v-for="item in list" :key="item.id">
+        <a class = "author" href="#1"><img :src="item.author.avatar_url" :title="item.title"></a>
+        <span class = "replay_count">{{item.reply_count}}/{{item.visit_count}}</span>
+        <a class = "last_time" href="#2">{{dispalyreplytime(item.last_reply_at)}}</a>
         <div>
-            <span>{{tag}}</span>
-            <a class = "toptic_title" :href="title_url">{{title}}</a>
+            <span>{{tag.share}}</span>
+            <a class = "toptic_title" :href="item.id">{{item.title}}</a>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
-import Vue from 'vue'
-function replaylasttime (time) {
-  let now = new Date().getTime()
-  let oldtime = new Date(time).getTime()
-  // console.log(now, oldtime)
-  let diff = now - oldtime // 计算回复和现在时间差
-  var result = ''
-  let min = 1000 * 60
-  let hour = min * 60
-  let day = hour * 24
-  let month = day * 30
-  let year = month * 12
-  let _year = diff / year // 换算成时、天、月、年
-  let _month = diff / month
-  let _day = diff / day
-  let _hour = diff / hour
-  let _min = diff / min
-  if (_year >= 1) {
-    result = ~~(_year) + '年前' // 两个波浪号表示返回整数
-  } else if (_month >= 1) {
-    result = ~~(_month) + '月前'
-  } else if (_day >= 1) {
-    result = ~~(_day) + '天前'
-  } else if (_hour >= 1) {
-    result = ~~(_hour) + '小时前'
-  } else if (_min >= 1) {
-    result = ~~(_min) + '分钟前'
-  } else result = '刚刚'
-  return result
-}
-Vue.filter('dispalyreplytime', function (value) {
-  return replaylasttime(value)
-})
+import { replaylasttime } from '@/utils/index.js'
 export default {
   name: 'TopList',
-  props: ['title', 'reply_count', 'visit_count',
-    'tab', 'loginname', 'avatar_url', 'title_url',
-    'reply_time', 'index'],
+  props: {list: Array},
   data () {
     return {
-      st: this.tab,
-      // isactive: true,
-      classobject: {
-        first: false
+      st: '12',
+      tag: {
+        'share': '分享'
       }
     }
   },
-  computed: {
-    tag: function () {
-      // console.log(this.avatar_url)
-      // console.log(this.reply_time)
-      if (this.tab === 'share') {
-        return '分享'
-      } else if (this.tab === 'ask') {
-        return '问答'
-      } else if (this.tab === 'good') {
-        return '精华'
-      } else {
-        return '其他'
-      }
-    },
-    classobject: function () {
-      if (this.index === 0) {
-        return {
-          first: true
-        }
-      }
+  methods: {
+    dispalyreplytime (time) {
+      return replaylasttime(time)
     }
   }
 }
@@ -144,7 +94,7 @@ export default {
     .topic_list:hover {
       background-color: #f5f5f5;
     }
-    .first {
+    .topic_list:first-child {
       border-top: 0; // 话题首航去掉top边框
     }
 </style>

@@ -6,19 +6,7 @@
       <!-- 主题列表 -->
       <Topic/>
       <div class = "inner">
-        <TopList
-         v-for = "item in list"
-         :key = "item.id"
-         :index = "item.index"
-         :title = "item.title"
-         :reply_count = "item.reply_count"
-         :visit_count = "item.visit_count"
-         :tab = "item.tab"
-         :avatar_url = "item.author.avatar_url"
-         :loginname = "item.author.loginname"
-         :title_url = "item.id"
-         :reply_time = "item.last_reply_at"
-        />
+        <TopList :list="list"/>
       </div>
     </div>
   </div>
