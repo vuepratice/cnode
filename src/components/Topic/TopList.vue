@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class = "topic-list" v-for="item in list" :key="item.id">
-        <a class = "author" href="#1"><img :src="item.author.avatar_url" :title="item.title"></a>
-        <span class = "replay-count">{{item.reply_count}}/{{item.visit_count}}</span>
-        <a class = "last-time" href="#2">{{dispalyreplytime(item.last_reply_at)}}</a>
-        <div>
-            <span>{{item.tab}}</span>
-            <a class = "toptic-title" :href="item.id">{{item.title}}</a>
-        </div>
+    <div class="topic-list" v-for="item in list" :key="item.id">
+      <a class="author" href="#1"><img :src="item.author.avatar_url" :title="item.title"></a>
+      <span class = "replay-count">{{item.reply_count}}/{{item.visit_count}}</span>
+      <a class = "last-time" href="#2">{{dispalyreplytime(item.last_reply_at)}}</a>
+      <div>
+          <span v-if="item.tab">{{tag[item.tab]}}</span>
+          <a class="toptic-title" :href="item.id">{{item.title}}</a>
+      </div>
     </div>
   </div>
 </template>
@@ -21,7 +21,9 @@ export default {
     return {
       st: '12',
       tag: {
-        'share': '分享'
+        'share': '分享',
+        'ask': '问答',
+        'good': '精华'
       }
     }
   },

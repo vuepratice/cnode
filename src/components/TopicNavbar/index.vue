@@ -3,11 +3,12 @@
       <span
       class="current-tab"
       v-for="item in navbarTab"
-      :key="item.index"
-      :class="{activebarTab: item.isActive}"
+      :key="item.name"
+      :class="{'activebar-tab': item.isActive}"
       @click="changeBar(item)"
       >
-      {{item.name}}</span>
+        {{item.name}}
+      </span>
     </div>
 </template>
 
@@ -16,22 +17,22 @@ export default {
   data () {
     return {
       navbarTab: [
-        {name: '全部', isActive: 'true'},
-        {name: '精华', isActive: 'false'},
-        {name: '分享', isActive: 'false'},
-        {name: '问答', isActive: 'false'},
-        {name: '招聘', isActive: 'false'},
-        {name: '客户端测试', isActive: 'false'}
+        {name: '全部', isActive: true},
+        {name: '精华', isActive: false},
+        {name: '分享', isActive: false},
+        {name: '问答', isActive: false},
+        {name: '招聘', isActive: false},
+        {name: '客户端测试', isActive: false}
       ]
     }
   },
   methods: {
-    changeBar (x) {
+    changeBar (item) {
       // 首先清除其他navbarTab高亮CSS
-      for (let i = 0; i < this.navbarTab.length; i++) {
-        this.navbarTab[i].isActive = false
-      }
-      x.isActive = true
+      this.navbarTab.map((item) => {
+        item.isActive = false
+      })
+      item.isActive = true
     }
   }
 }
@@ -52,12 +53,14 @@ export default {
             cursor: pointer;
             line-height: 20px;
             text-align: center;
+            &:hover {color: #005580}
         }
-        .activebarTab {
+        .activebar-tab {
             background-color: #80bd01;
             color: #fff;
             padding: 3px 4px;
             border-radius: 3px;
+            &:hover {color: #fff}
         }
     }
 </style>
