@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class = "topic_list" v-for="item in list" :key="item.id">
+    <div class = "topic-list" v-for="item in list" :key="item.id">
         <a class = "author" href="#1"><img :src="item.author.avatar_url" :title="item.title"></a>
-        <span class = "replay_count">{{item.reply_count}}/{{item.visit_count}}</span>
-        <a class = "last_time" href="#2">{{dispalyreplytime(item.last_reply_at)}}</a>
+        <span class = "replay-count">{{item.reply_count}}/{{item.visit_count}}</span>
+        <a class = "last-time" href="#2">{{dispalyreplytime(item.last_reply_at)}}</a>
         <div>
-            <span>{{tag.share}}</span>
-            <a class = "toptic_title" :href="item.id">{{item.title}}</a>
+            <span>{{item.tab}}</span>
+            <a class = "toptic-title" :href="item.id">{{item.title}}</a>
         </div>
     </div>
   </div>
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss" socped>
-    .topic_list {
+    .topic-list {
         text-align: left;
         position: relative;
         padding: 10px;
@@ -49,7 +49,7 @@ export default {
               border-radius: 3px;
             }
         }
-        .replay_count {
+        .replay-count {
           display: inline-block;
           float: left;
           width: 70px;
@@ -58,7 +58,7 @@ export default {
           color: #b4b4b4;
           line-height: 2em;
         }
-        .last_time {
+        .last-time {
           display: inline-block;
           float: right;
           font-size: 11px;
@@ -72,7 +72,7 @@ export default {
             border-radius: 3px;
             font-size: 12px;
           }
-          .toptic_title {
+          .toptic-title {
             display: inline-block;
             font-size: 16px;
             color: #333;
@@ -83,18 +83,18 @@ export default {
             text-overflow: ellipsis;
             overflow: hidden;
           }
-          .toptic_title:hover {
+          .toptic-title:hover {
             text-decoration: underline;
           }
-          .toptic_title:visited {
+          .toptic-title:visited {
             color: #888;
           }
         }
     }
-    .topic_list:hover {
+    .topic-list:hover {
       background-color: #f5f5f5;
     }
-    .topic_list:first-child {
+    .topic-list:first-child {
       border-top: 0; // 话题首航去掉top边框
     }
 </style>

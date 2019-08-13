@@ -5,7 +5,7 @@
     <div>
       <!-- 主题列表 -->
       <Topic/>
-      <div class = "inner">
+      <div class="inner">
         <TopList :list="list"/>
       </div>
     </div>
