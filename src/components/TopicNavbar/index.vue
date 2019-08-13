@@ -26,7 +26,7 @@ export default {
     }
   },
   methods: {
-    change (x) {
+    changeBar (x) {
       // 首先清除其他navbarTab高亮CSS
       for (let i = 0; i < this.navbarTab.length; i++) {
         this.navbarTab[i].isActive = false
