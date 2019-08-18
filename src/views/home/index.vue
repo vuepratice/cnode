@@ -2,10 +2,12 @@
   <div>
     home
     <!-- 左侧 -->
-    <div>
       <!-- 主题列表 -->
       <Topic/>
-    </div>
+      <!-- 方法一 -->
+      <!-- <button @click="toDetail">详情</button> -->
+      <!-- 方法二 -->
+        <router-link :to="{path: '/detail', query: {id: 123}}">详情</router-link>
   </div>
 </template>
 
@@ -38,6 +40,9 @@ export default {
   methods: {
     search () {
       // TODO: 数据请求，获取数据
+    },
+    toDetail () {
+      this.$router.push({path: '/detail', query: {id: 123}}) // 注意是router，path是路由，query就是传递什么参数
     }
   }
 }
