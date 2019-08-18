@@ -8,6 +8,7 @@
       <div class="inner">
         <TopList :list="list"/>
       </div>
+      <TopicPage :totalPage="totalPage" :page="page" @cliackPage="getPageData"/>
     </div>
   </div>
 </template>
@@ -15,14 +16,17 @@
 <script>
 import Topic from '@/components/Topic'
 import TopicNavbar from '@/components/TopicNavbar'
+import TopicPage from '@/components/TopicNavbar/TopicPage.vue'
 import TopList from '@/components/Topic/TopList.vue'
 import { getTopic } from '@/api'
 
 export default {
-  components: { Topic, TopicNavbar, TopList },
+  components: { Topic, TopicNavbar, TopList, TopicPage },
   data () {
     return {
-      list: [] // 数据列表
+      list: [], // 数据列表
+      page: 1,
+      totalPage: 10
     }
   },
   computed: {
@@ -46,6 +50,9 @@ export default {
   methods: {
     search () {
       // TODO: 数据请求，获取数据
+    },
+    getPageData () {
+      console.log('a')
     }
   }
 }

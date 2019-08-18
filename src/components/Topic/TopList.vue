@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div>
     <div class="topic-list" v-for="item in list" :key="item.id">
       <a class="author" href="#1"><img :src="item.author.avatar_url" :title="item.title"></a>
