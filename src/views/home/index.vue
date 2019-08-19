@@ -7,7 +7,7 @@
       <div class="inner">
         <TopList :list="list"/>
       </div>
-      <TopicPage :totalPage="totalPage" :page="page" @clickPage="getPageData"/>
+      <TopicPage :total-page="totalPage" :page="page" @clickPage="getPageData"/>
     </div>
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
       list: [], // 数据列表
       page: 1,
       totalPage: 10,
+      limit: 20,
       tabTag: '' // 接收tab
     }
   },
@@ -36,11 +37,7 @@ export default {
     }
   },
   created () {
-    getTopic({ page: 1, tab: '', limit: 20 }).then((res) => {
-      // console.log(res) // 打印原数据
-      this.list = res.data.data
-      console.log(this.list) // 打印数据中data对象
-    })
+    this.getListData()
   },
   watch: {
     searchText (newVal) {
@@ -56,7 +53,10 @@ export default {
       console.log(tab)
       this.tabTag = tab // 保存该tab，为下面翻页使用
       this.page = 1 // 复位翻页插件（不可行，该变量指向是初始页码值）
-      getTopic({ page: 1, tab: tab, limit: 20 }).then((res) => {
+      this.getListData()
+    },
+    getListData () {
+      getTopic({ page: this.page, tab: this.tabTag, limit: this.limit }).then((res) => {
         this.list = res.data.data
         console.log(this.list)
       })
@@ -64,10 +64,8 @@ export default {
     // 根据page值获取相应page的topic数据
     getPageData (data) {
       console.log(data.page)
-      getTopic({ page: data.page, tab: this.tabTag, limit: 20 }).then((res) => {
-        this.list = res.data.data
-        console.log(this.list)
-      })
+      this.page = data.page
+      this.getListData()
     }
   }
 }

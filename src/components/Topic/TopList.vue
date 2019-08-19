@@ -7,7 +7,7 @@
       <div>
           <!-- 对象访问方式 -->
           <!-- <span v-if="item.tab">{{tag[item.tab]}}</span> -->
-          <span class="tag" :class="{'active-tag': item.top，'active-tag': item.good}" v-if="item.tab">{{displayTag(item)}}</span>
+          <span class="tag" :class="{'active-tag': activeTag(item)}" v-if="item.tab">{{displayTag(item)}}</span>
           <a class="toptic-title" :href="item.id">{{item.title}}</a>
       </div>
     </div>
@@ -34,6 +34,12 @@ export default {
   methods: {
     dispalyreplytime (time) {
       return replaylasttime(time)
+    },
+    activeTag (item) {
+      if (item.top || item.good) {
+        return true
+      }
+      return false
     },
     displayTag (item) {
       if (item.top === true) {
