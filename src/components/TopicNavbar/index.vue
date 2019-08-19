@@ -17,12 +17,12 @@ export default {
   data () {
     return {
       navbarTab: [
-        {name: '全部', isActive: true},
-        {name: '精华', isActive: false},
-        {name: '分享', isActive: false},
-        {name: '问答', isActive: false},
-        {name: '招聘', isActive: false},
-        {name: '客户端测试', isActive: false}
+        {name: '全部', isActive: true, tab: ''},
+        {name: '精华', isActive: false, tab: 'good'},
+        {name: '分享', isActive: false, tab: 'share'},
+        {name: '问答', isActive: false, tab: 'ask'},
+        {name: '招聘', isActive: false, tab: 'job'},
+        {name: '客户端测试', isActive: false, tab: 'test'}
       ]
     }
   },
@@ -33,6 +33,8 @@ export default {
         item.isActive = false
       })
       item.isActive = true
+      // 自定义事件传递tab给父组件来获取相应tab数据
+      this.$emit('clickTab', item.tab)
     }
   }
 }

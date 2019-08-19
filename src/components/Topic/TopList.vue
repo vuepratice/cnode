@@ -5,7 +5,9 @@
       <span class = "replay-count">{{item.reply_count}}/{{item.visit_count}}</span>
       <a class = "last-time" href="#2">{{dispalyreplytime(item.last_reply_at)}}</a>
       <div>
-          <span v-if="item.tab">{{tag[item.tab]}}</span>
+          <!-- 对象访问方式 -->
+          <!-- <span v-if="item.tab">{{tag[item.tab]}}</span> -->
+          <span class="tag" :class="{'active-tag': item.top，'active-tag': item.good}" v-if="item.tab">{{displayTag(item)}}</span>
           <a class="toptic-title" :href="item.id">{{item.title}}</a>
       </div>
     </div>
@@ -23,13 +25,24 @@ export default {
       tag: {
         'share': '分享',
         'ask': '问答',
-        'good': '精华'
+        'good': '精华',
+        'job': '招聘',
+        'top': '置顶'
       }
     }
   },
   methods: {
     dispalyreplytime (time) {
       return replaylasttime(time)
+    },
+    displayTag (item) {
+      if (item.top === true) {
+        return this.tag.top
+      } else if (item.good === true) {
+        return this.tag.good
+      } else {
+        return this.tag[item.tab]
+      }
     }
   }
 }
@@ -67,12 +80,16 @@ export default {
           color: #778087;
         }
         div {
-          span {
+          .tag {
             background-color: #e5e5e5;
             color: #999;
             padding: 2px 4px;
             border-radius: 3px;
             font-size: 12px;
+          }
+          .active-tag {
+            background-color: #80bd01;
+            color: #fff;
           }
           .toptic-title {
             display: inline-block;

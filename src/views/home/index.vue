@@ -1,14 +1,13 @@
 <template>
   <div>
-    <TopicNavbar/>
+    <TopicNavbar @clickTab="getTabData"/>
     <!-- 左侧 -->
     <div>
       <!-- 主题列表 -->
-      <Topic/>
       <div class="inner">
         <TopList :list="list"/>
       </div>
-      <TopicPage :totalPage="totalPage" :page="page" @cliackPage="getPageData"/>
+      <TopicPage :totalPage="totalPage" :page="page" @clickPage="getPageData"/>
     </div>
   </div>
 </template>
@@ -26,7 +25,8 @@ export default {
     return {
       list: [], // 数据列表
       page: 1,
-      totalPage: 10
+      totalPage: 10,
+      tabTag: '' // 接收tab
     }
   },
   computed: {
@@ -51,8 +51,23 @@ export default {
     search () {
       // TODO: 数据请求，获取数据
     },
-    getPageData () {
-      console.log('a')
+    // 根据tab值获取相应的tab的topic数据
+    getTabData (tab) {
+      console.log(tab)
+      this.tabTag = tab // 保存该tab，为下面翻页使用
+      this.page = 1 // 复位翻页插件（不可行，该变量指向是初始页码值）
+      getTopic({ page: 1, tab: tab, limit: 20 }).then((res) => {
+        this.list = res.data.data
+        console.log(this.list)
+      })
+    },
+    // 根据page值获取相应page的topic数据
+    getPageData (data) {
+      console.log(data.page)
+      getTopic({ page: data.page, tab: this.tabTag, limit: 20 }).then((res) => {
+        this.list = res.data.data
+        console.log(this.list)
+      })
     }
   }
 }
