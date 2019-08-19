@@ -8,6 +8,7 @@
       <!-- <button @click="toDetail">详情</button> -->
       <!-- 方法二 -->
         <router-link :to="{path: '/detail', query: {id: 123}}">详情</router-link>
+        <router-link :to="{path: '/detail2', query: {id: 456}}">详情2</router-link>
   </div>
 </template>
 
