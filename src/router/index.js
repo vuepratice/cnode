@@ -24,6 +24,13 @@ export default new Router({
             default: () => import('@/views/detail'),
             rightBar: () => import('@/views/rightBar')
           }
+        },
+        {
+          path: '/detail2',
+          name: 'detail2',
+          components: {
+            default: () => import('@/views/detail2')
+          }
         }
       ]
     },

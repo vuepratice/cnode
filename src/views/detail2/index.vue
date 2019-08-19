@@ -1,6 +1,7 @@
 <template>
   <div>
-    详情2
+    <p>详情2</p>
+    <router-link :to="{path: '/'}">返回</router-link>
   </div>
 </template>
 
