@@ -1,5 +1,5 @@
   <template>
-  <div>
+  <div class="topic-contain">
     <div class="topic-list" v-for="item in list" :key="item.id">
       <a class="author" href="#1"><img :src="item.author.avatar_url" :title="item.title"></a>
       <span class = "replay-count">{{item.reply_count}}/{{item.visit_count}}</span>
@@ -55,6 +55,9 @@ export default {
 </script>
 
 <style lang="scss" socped>
+    .topic-contain {
+      min-height: 400px;
+    }
     .topic-list {
         text-align: left;
         position: relative;
@@ -86,6 +89,7 @@ export default {
           color: #778087;
         }
         div {
+          // max-height: 31px;
           .tag {
             background-color: #e5e5e5;
             color: #999;
@@ -101,7 +105,8 @@ export default {
             display: inline-block;
             font-size: 16px;
             color: #333;
-            max-width: 70%;
+            // max-width: 70%;
+            // min-width: 200px;
             line-height: 30px;
             vertical-align: middle;
             white-space:nowrap; // 单行文本溢出以下三个结合使用，省略号代替
@@ -121,5 +126,15 @@ export default {
     }
     .topic-list:first-child {
       border-top: 0; // 话题首航去掉top边框
+    }
+    @media screen and (min-width:1100px) {
+      .toptic-title {
+        max-width: 70%;
+      }
+    }
+    @media screen and (min-width:750px) {
+      .toptic-title {
+        max-width: 40%;
+      }
     }
 </style>

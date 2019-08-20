@@ -52,9 +52,10 @@ export default {
     getTabData (tab) {
       console.log(tab)
       this.tabTag = tab // 保存该tab，为下面翻页使用
-      this.page = 1 // 复位翻页插件（不可行，该变量指向是初始页码值）
+      // this.page = 1 // 复位翻页插件（不可行，该变量指向是初始页码值）
       this.getListData()
     },
+    // 利用方法封装请求数据部分
     getListData () {
       getTopic({ page: this.page, tab: this.tabTag, limit: this.limit }).then((res) => {
         this.list = res.data.data
