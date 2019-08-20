@@ -132,7 +132,7 @@ export default {
         max-width: 70%;
       }
     }
-    @media screen and (min-width:750px) {
+    @media screen and (min-width:0px) and (max-width:1100px) {
       .toptic-title {
         max-width: 40%;
       }
