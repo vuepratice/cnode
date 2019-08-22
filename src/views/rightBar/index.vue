@@ -1,15 +1,15 @@
 <template>
   <div>
     <!-- 公共 -->
-    <div class="rightBar-inner-div  personal-details">
+    <div class="item  personal-details">
       <p class="cnode">CNode：Node.js专业中文社区</p>
       <p class="sign">您可以登录或注册，也可以</p>
       <a class= "github-sign"><span>通过GitHub登录</span></a>
     </div>
 
-    <div class="rightBar-inner-div" v-if="publish()">发布话题</div>
+    <div class="item" v-if="publish()">发布话题</div>
 
-    <div class="rightBar-inner-div" v-if="adList()">广告栏</div>
+    <div class="item" v-if="adList()">广告栏</div>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .rightBar-inner-div {
+  .item {
     margin-bottom: 20px;
     background-color: #fff;
     text-align: left;

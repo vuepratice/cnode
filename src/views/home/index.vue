@@ -6,7 +6,7 @@
       <!-- 主题列表 -->
       <div class="inner">
         <transition name="fade">
-          <Loading v-if="isLoading"></Loading>
+          <Loading class="loading" v-if="isLoading"></Loading>
         </transition>
         <TopList :list="list"/>
       </div>

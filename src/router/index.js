@@ -11,7 +11,7 @@ export default new Router({
       children: [
         {
           path: '',
-          name: 'home',
+          name: 'ho me',
           components: {
             default: () => import('@/views/home'),
             rightBar: () => import('@/views/rightBar')
