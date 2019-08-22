@@ -16,6 +16,14 @@ export default new Router({
             default: () => import('@/views/home'),
             rightBar: () => import('@/views/rightBar')
           }
+        },
+        {
+          path: '/API',
+          name: 'API',
+          components: {
+            default: () => import('@/views/API'),
+            rightBar: () => import('@/views/rightBar')
+          }
         }
       ]
     },

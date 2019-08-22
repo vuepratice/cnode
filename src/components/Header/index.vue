@@ -7,9 +7,9 @@
       <input class="search" @keyup.enter="search" placeholder="请输入" v-model.trim="searchText" type="text">
     </div>
     <div class="container-rg">
-      <a href="/">首页</a>
+      <router-link class="container-rg-api" :to="{path:'/'}">首页</router-link>
       <a href="/">新手入门</a>
-      <a href="/">API</a>
+      <router-link class="container-rg-api" :to="{path:'/API'}">API</router-link>
       <a href="/">关于</a>
       <a href="/">注册</a>
       <a href="/">登录</a>
@@ -63,6 +63,9 @@ export default {
   }
   .container-rg {
     a {
+      padding: 10px 15px;
+    }
+    .container-rg-api {
       padding: 10px 15px;
     }
   }

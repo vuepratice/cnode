@@ -66,7 +66,7 @@ export default {
     width: 290px;
     float: right;
     margin-bottom: 20px;
-    background-color: #fff;
+    // background-color: #fff;
   }
 </style>
 <style lang="scss">
