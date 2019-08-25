@@ -2,6 +2,7 @@
   <pager
     :total-page="totalPage"
     :init-page="page"
+    :show-jump="showJump"
     @go-page="goPage"></pager>
     <!-- s -->
 </template>
@@ -13,6 +14,11 @@ export default {
   props: {
     totalPage: Number,
     page: Number
+  },
+  data () {
+    return {
+      showJump: false // 去掉插件page的go部分
+    }
   },
   methods: {
     goPage (data) {

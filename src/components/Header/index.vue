@@ -58,8 +58,17 @@ export default {
     font-weight: 700;
   }
   .search {
+    width: 210px;
+    height: 20px;
     padding: 3px 5px 3px 22px;
+    margin-top: 3px;
     border-radius: 15px;
+    border: 0;
+    background-color: #888;
+    transition: all .5s;
+    &:hover {
+      background-color: #fff;
+    }
   }
   .container-rg {
     a {

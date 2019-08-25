@@ -10,12 +10,12 @@ export default {
 
 <style lang="scss" scoped>
   .loading {
-    position: fixed;
-    left: 0;
-    top: 0;
-    background: url('~@/assets/loading.svg') center center no-repeat #fff;
-    width: 100vw;
-    height: 100vh;
+    // position: fixed;
+    // left: 0;
+    // top: 0;
+    background: url('~@/assets/loading.svg') center top no-repeat #fff;
+    // width: 100vw;
+    // height: 100vh;
     z-index: 1000;
     opacity: 0.7;
   }

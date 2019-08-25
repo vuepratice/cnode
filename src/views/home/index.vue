@@ -11,6 +11,7 @@
         <TopList :list="list"/>
       </div>
       <TopicPage :total-page="totalPage" :page="page" @clickPage="getPageData"/>
+      <ReturnTop/>
     </div>
   </div>
 </template>
@@ -21,10 +22,11 @@ import TopicNavbar from '@/components/TopicNavbar'
 import TopicPage from '@/components/TopicNavbar/TopicPage.vue'
 import TopList from '@/components/Topic/TopList.vue'
 import Loading from '@/components/Loading'
+import ReturnTop from '@/components/ReturnTop'
 import { getTopic } from '@/api'
 
 export default {
-  components: { Topic, TopicNavbar, TopList, TopicPage, Loading },
+  components: { Topic, TopicNavbar, TopList, TopicPage, Loading, ReturnTop },
   data () {
     return {
       list: [], // 数据列表
@@ -81,5 +83,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .inner {
+    position: relative;
+    .loading {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
 </style>

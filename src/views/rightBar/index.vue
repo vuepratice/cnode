@@ -3,8 +3,7 @@
     <!-- 公共 -->
     <div class="item  personal-details">
       <p class="cnode">CNode：Node.js专业中文社区</p>
-      <p class="sign">您可以登录或注册，也可以</p>
-      <a class= "github-sign"><span>通过GitHub登录</span></a>
+      <a class= "github-sign"><span>登录</span></a>
     </div>
 
     <div class="item" v-if="publish()">发布话题</div>
@@ -51,18 +50,19 @@ export default {
       margin-bottom: 10px;
       line-height: 26px;
     }
-    .sign {
-      line-height: 20px;
-    }
     .github-sign {
       text-decoration: none;
+      &:hover {
+        font-size: 14px;
+      }
       span{
         display:inline-block;
-        padding: 3px 10px;
+        padding: 3px 20px;
         color:#fff;
         background-color: #5bc0de;
         border-radius: 3px;
         line-height: 28px;
+        cursor: pointer;
       }
     }
   }
