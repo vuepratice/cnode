@@ -11,7 +11,7 @@
         <TopList :list="list"/>
       </div>
       <TopicPage :total-page="totalPage" :page="page" @clickPage="getPageData"/>
-      <ReturnTop/>
+      <ReturnTop @returnTop="toTop"/>
     </div>
   </div>
 </template>
@@ -77,6 +77,11 @@ export default {
       console.log(data.page)
       this.page = data.page
       this.getListData()
+    },
+    toTop () {
+      console.log('执行一次回到顶部')
+      document.body.scrollTop = 0
+      document.documentElement.scrollTop = 0
     }
   }
 }

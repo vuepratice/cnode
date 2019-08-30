@@ -1,5 +1,5 @@
 <template>
-  <div class="return-top" @click="backTop" @scroll="scroll">返回顶部</div>
+  <div class="return-top" @click="backTop">返回顶部</div>
 </template>
 
 <script>
@@ -8,19 +8,19 @@ export default {
   methods: {
     backTop () {
       console.log('回到顶部')
-    },
-    scroll (event) {
-      let g = event.target.scrollTop
-      console.log(g)
+      this.$emit('returnTop')
     }
-  },
-  computed: {
-    showTop () {
-      let value = this.scrollTop > 200
-      console.log(this.scrollTop, value)
-      return value
-    }
+    // scroll () {
+    //   console.log('q')
+    // }
   }
+  // computed: {
+  //   showTop () {
+  //     let value = this.scrollTop > 200
+  //     console.log(this.scrollTop, value)
+  //     return value
+  //   }
+  // }
 }
 </script>
 
