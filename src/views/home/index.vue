@@ -25,6 +25,9 @@ import Loading from '@/components/Loading'
 import ReturnTop from '@/components/ReturnTop'
 import { getTopic } from '@/api'
 
+// 获取活动区域元素的ID
+let top = document.getElementById('mainContainer')
+
 export default {
   components: { Topic, TopicNavbar, TopList, TopicPage, Loading, ReturnTop },
   data () {
@@ -80,8 +83,8 @@ export default {
     },
     toTop () {
       console.log('执行一次回到顶部')
-      document.body.scrollTop = 0
-      document.documentElement.scrollTop = 0
+      console.log(top.scrollTop)
+      top.scrollTop = 0
     }
   }
 }

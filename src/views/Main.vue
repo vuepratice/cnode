@@ -3,7 +3,7 @@
     <div class="header-container">
       <Header class="header"/>
     </div>
-    <div class="main-container">
+    <div class="main-container" id="mainContainer">
       <main class="content">
         <!-- 右侧栏 -->
         <router-view class="content-right" name="rightBar"></router-view>
