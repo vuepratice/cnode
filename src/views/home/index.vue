@@ -11,7 +11,6 @@
         <TopList :list="list"/>
       </div>
       <TopicPage :total-page="totalPage" :page="page" @clickPage="getPageData"/>
-      <ReturnTop @returnTop="toTop"/>
     </div>
   </div>
 </template>
@@ -22,14 +21,12 @@ import TopicNavbar from '@/components/TopicNavbar'
 import TopicPage from '@/components/TopicNavbar/TopicPage.vue'
 import TopList from '@/components/Topic/TopList.vue'
 import Loading from '@/components/Loading'
-import ReturnTop from '@/components/ReturnTop'
 import { getTopic } from '@/api'
 
-// 获取活动区域元素的ID
-let top = document.getElementById('mainContainer')
+// let top
 
 export default {
-  components: { Topic, TopicNavbar, TopList, TopicPage, Loading, ReturnTop },
+  components: { Topic, TopicNavbar, TopList, TopicPage, Loading },
   data () {
     return {
       list: [], // 数据列表
@@ -68,6 +65,7 @@ export default {
     },
     // 利用方法封装请求数据部分
     getListData () {
+      this.$store.dispatch('goTop')
       getTopic({ page: this.page, tab: this.tabTag, limit: this.limit }).then((res) => {
         this.list = res.data.data
         console.log(this.list)
@@ -80,11 +78,6 @@ export default {
       console.log(data.page)
       this.page = data.page
       this.getListData()
-    },
-    toTop () {
-      console.log('执行一次回到顶部')
-      console.log(top.scrollTop)
-      top.scrollTop = 0
     }
   }
 }

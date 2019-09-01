@@ -1,26 +1,44 @@
 <template>
-  <div class="return-top" @click="backTop">返回顶部</div>
+  <div class="return-top" v-show="isShow" @click="backTop">返回顶部</div>
 </template>
 
 <script>
 export default {
   name: 'ReturnTop',
+  data () {
+    return {
+      toTopEle: '',
+      isShow: false,
+      height: 500
+    }
+  },
+  // 挂载后获取获取区域的元素
+  mounted () {
+    // 获取活动区域元素的ID，要在元素挂载(mounted)后去获取，即页面渲染后才能获取元素
+    // this.toTopEle = document.getElementById('mainContainer') // 方法1获取
+    this.toTopEle = document.body.querySelector('#mainContainer') // 方法2获取
+    console.log(this.toTopEle)
+    // 滚屏显示返回顶部元素
+    this.toTopEle.addEventListener('scroll', this.getScroll)
+  },
   methods: {
     backTop () {
-      console.log('回到顶部')
-      this.$emit('returnTop')
+      console.log('返回顶部')
+      this.toTopEle.scrollTop = 0
+      // this.$emit('returnTop') // 向父组件传递事件
+    },
+    getScroll () {
+      if (this.toTopEle.scrollTop > this.height) {
+        this.isShow = true
+      } else {
+        this.isShow = false
+      }
     }
-    // scroll () {
-    //   console.log('q')
-    // }
+  },
+  // 元素销毁时移除由mounted的方法
+  destroyed () {
+    this.toTopEle.removeEventListener('scroll', this.getScroll)
   }
-  // computed: {
-  //   showTop () {
-  //     let value = this.scrollTop > 200
-  //     console.log(this.scrollTop, value)
-  //     return value
-  //   }
-  // }
 }
 </script>
 
@@ -32,8 +50,9 @@ export default {
     bottom: 150px;
     right: 20px;
     cursor: pointer;
-    line-height: 20px;
+    line-height: 22px;
     border-radius: 3px;
     background-color: #867e7e;
+    z-index: 99;
   }
 </style>

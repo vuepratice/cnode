@@ -11,7 +11,7 @@ export default new Router({
       children: [
         {
           path: '',
-          name: 'ho me',
+          name: 'home',
           components: {
             default: () => import('@/views/home'),
             rightBar: () => import('@/views/rightBar')
@@ -22,6 +22,14 @@ export default new Router({
           name: 'API',
           components: {
             default: () => import('@/views/API'),
+            rightBar: () => import('@/views/rightBar')
+          }
+        },
+        {
+          path: '/datails',
+          name: 'datails',
+          components: {
+            default: () => import('@/views/Datails'),
             rightBar: () => import('@/views/rightBar')
           }
         }

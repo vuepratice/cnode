@@ -28,13 +28,16 @@ export default {
   },
   methods: {
     changeBar (item) {
-      // 首先清除其他navbarTab高亮CSS
-      this.navbarTab.map((item) => {
-        item.isActive = false
-      })
-      item.isActive = true
-      // 自定义事件传递tab给父组件来获取相应tab数据
-      this.$emit('clickTab', item.tab)
+      // 判断点击的是否是高亮的tag
+      if (!item.isActive) {
+        // 首先清除其他navbarTab高亮CSS
+        this.navbarTab.map((item) => {
+          item.isActive = false
+        })
+        item.isActive = true
+        // 自定义事件传递tab给父组件来获取相应tab数据
+        this.$emit('clickTab', item.tab)
+      }
     }
   }
 }

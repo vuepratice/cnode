@@ -10,6 +10,7 @@
         <!-- 主要内容区 -->
         <router-view class="content-left"></router-view>
       </main>
+      <ReturnTop/>
       <Footer/>
     </div>
   </div>
@@ -18,9 +19,10 @@
 <script>
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import ReturnTop from '@/components/ReturnTop'
 export default {
   components: {
-    Header, Footer
+    Header, Footer, ReturnTop
   }
 }
 </script>

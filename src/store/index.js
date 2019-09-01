@@ -13,7 +13,14 @@ const store = new Vuex.Store({
       state.searchText = text
     }
   },
-  actions: {},
+  actions: {
+    goTop ({ state }, target) {
+      let targetElm = document.querySelector(target || '#mainContainer')
+      if (targetElm) {
+        targetElm.scrollTop = 0
+      }
+    }
+  },
   modules: {}
 })
 
