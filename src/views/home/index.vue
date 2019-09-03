@@ -10,7 +10,7 @@
         </transition>
         <TopList :list="list"/>
       </div>
-      <TopicPage :total-page="totalPage" :page="page" @clickPage="getPageData"/>
+      <TopicPage class="page" :total-page="totalPage" :page="page" @clickPage="getPageData"/>
     </div>
   </div>
 </template>
@@ -93,5 +93,8 @@ export default {
       top: 0;
       left: 0;
     }
+  }
+  .page {
+    padding-bottom: 10px;
   }
 </style>

@@ -26,15 +26,15 @@ export function replaylasttime (time) {
   let _hour = diff / hour
   let _min = diff / min
   if (_year >= 1) {
-    result = ~~(_year) + '年前' // 两个波浪号表示返回整数
+    result = ~~(_year) + ' 年前' // 两个波浪号表示返回整数
   } else if (_month >= 1) {
-    result = ~~(_month) + '月前'
+    result = ~~(_month) + ' 个月前'
   } else if (_day >= 1) {
-    result = ~~(_day) + '天前'
+    result = ~~(_day) + ' 天前'
   } else if (_hour >= 1) {
-    result = ~~(_hour) + '小时前'
+    result = ~~(_hour) + ' 小时前'
   } else if (_min >= 1) {
-    result = ~~(_min) + '分钟前'
+    result = ~~(_min) + ' 分钟前'
   } else result = '刚刚'
   return result
 }

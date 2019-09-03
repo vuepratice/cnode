@@ -1,21 +1,214 @@
 <template>
-  <div v-html="content.content"></div>
+  <div class="panel">
+    <div class="header">
+      <span class="topic-title">
+        <span class="put-top" v-show="isShow">{{showTag()}}</span>
+        {{list.title}}
+      </span>
+      <div class="info">
+        <span>{{"发布于 "+createdTime(list.create_at)}}</span>
+        <span>
+          作者
+          <a href="list.author.avatar_url">{{list.author.loginname}}</a>
+        </span>
+        <span>{{list.visit_count+" 次浏览"}}</span>
+        <span>{{"来自 "+tag[list.tab]}}</span>
+      </div>
+    </div>
+    <div class="container">
+      <div class="content" v-html="list.content"></div>
+    </div>
+  </div>
 </template>
 
 <script>
+import { replaylasttime } from '@/utils'
+
 export default {
   data () {
     return {
       id: '',
-      content: ''
+      list: '',
+      isShow: false,
+      tag: {
+        share: '分享',
+        ask: '问答',
+        job: '招聘'
+      }
     }
   },
   created () {
-    this.content = this.$route.query.id
+    this.list = this.$route.query.id
+  },
+  methods: {
+    // 判断是否为置顶或精华博文
+    showTag () {
+      if (this.list.top) {
+        this.isShow = true
+        return '置顶'
+      } else if (this.list.good) {
+        this.isShow = true
+        return '精华'
+      } else {
+        this.isShow = false
+      }
+    },
+    // 时间处理
+    createdTime (time) {
+      return replaylasttime(time)
+    }
   }
 }
 </script>
 
-<style>
-
+<style lang="scss" socped>
+.panel{
+  text-align: left;
+  line-height: 20px;
+  border-radius: 3px;
+  word-break: break-word;
+  font-family: "Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB",STHeiti,sans-serif!important;
+ .header {
+   padding: 10px;
+   color: #333;
+   .topic-title{
+     font-size: 22px;
+     font-weight: 700;
+     margin: 8px 0;
+     display: inline-block;
+     vertical-align: bottom;
+     width: 75%;
+     line-height: 130%;
+     .put-top {
+       background-color: #80bd01;
+       padding:2px 4px;
+       border-radius: 3px;
+       -webkit-border-radius: 3px;
+       color: #fff;
+       font-size: 12px;
+      //  vertical-align: text-bottom;
+     }
+   }
+ }
+ .info{
+   color: #838383;
+   font-size: 12px;
+   overflow: hidden;
+   span::before {
+     content: "• ";
+   }
+   a {
+     color: inherit;
+     &:hover {
+       text-decoration: underline;
+     }
+   }
+ }
+ .container {
+   padding: 10px;
+   border-top: 1px solid #e5e5e5;
+   .content {
+     margin: 0 10px;
+    .markdown-text {
+      &>:first-child{
+        margin: 0;
+      }
+      h2 {
+        font-size: 26px;
+        margin: 30px 0 15px;
+        border-bottom: 1px solid #eee;
+        line-height: 40px;
+        font-weight: 700;
+        }
+      p {
+        font-size: 15px;
+        line-height: 1.7em;
+        overflow: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        margin: 1em 0;
+        word-break: break-word;
+      }
+      ul,ol {
+        padding: 0;
+        margin: 0 0 10px 25px;
+        list-style-type: disc;
+      }
+      li {
+        line-height: 2em;
+        font-size: 14px;
+      }
+      a {
+        font-size: inherit;
+        color: #08c;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      img {
+        cursor: pointer;
+        height: auto;
+        max-width: 100%;
+        vertical-align: middle;
+        border: 0;
+      }
+      code {
+        font-size: 12px;
+        color: #000;
+        background-color: #fcfafa;
+        padding: 4px 6px;
+        margin: 0 1px;
+      }
+      pre.prettyprint {
+        font-size: 14px;
+        padding: 0 15px;
+        margin: 20px -10px;
+        background-color: #f7f7f7;
+        tab-size: 4;
+        line-height: 22px;
+        font-family: "Monaco",Menlo,Consolas,"Courier New",monospace;
+        code {
+          padding: 0;
+          border: 0;
+          background-color: transparent;
+          white-space: pre-wrap;
+          font-family: "Monaco",Menlo,Consolas,"Courier New",monospace;
+        }
+      }
+      blockquote {
+        &::before {
+          content: "";
+        }
+        padding: 0 0 0 15px;
+        margin: 0 0 20px;
+        border-left: 5px solid #eee;
+        &::after {
+          content: "";
+        }
+      }
+      strong {
+        font-weight: 700px;
+      }
+      .kwd {
+        color: #008;
+      }
+      .pln {
+        color: #000;
+      }
+      .typ {
+        color: #606;
+      }
+      .clo, .opn, .pun {
+        color: #660;
+      }
+      .com {
+        color: #800;
+      }
+      .str {
+        color: #080;
+      }
+    }
+   }
+ }
+}
 </style>
