@@ -56,7 +56,7 @@ export default {
 
 <style lang="scss" socped>
     .topic-contain {
-      min-height: 400px;
+      min-height: 500px;
     }
     .topic-list {
         text-align: left;

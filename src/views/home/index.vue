@@ -23,8 +23,6 @@ import TopList from '@/components/Topic/TopList.vue'
 import Loading from '@/components/Loading'
 import { getTopic } from '@/api'
 
-// let top
-
 export default {
   components: { Topic, TopicNavbar, TopList, TopicPage, Loading },
   data () {
