@@ -13,7 +13,7 @@ export default {
     // position: fixed;
     // left: 0;
     // top: 0;
-    background: url('~@/assets/loading2.svg') center top no-repeat #fff;
+    background: url('~@/assets/loading3.svg') center 20% no-repeat #fff;
     // width: 100vw;
     // height: 100vh;
     z-index: 1000;

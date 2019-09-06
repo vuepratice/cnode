@@ -1,14 +1,28 @@
 <template>
   <div>
     <!-- 公共 -->
-    <div class="item  personal-details">
+    <div class="item  personal-details" v-if="pl()">
       <p class="cnode">CNode：Node.js专业中文社区</p>
-      <a class= "github-sign"><span>登录</span></a>
+      <router-link class= "github-sign" :to="{path:'/signin'}"><span>登录</span></router-link>
     </div>
 
     <div class="item" v-if="publish()">发布话题</div>
 
     <div class="item" v-if="adList()">广告栏</div>
+
+    <div class="about" v-if="about()">
+      <div class="about-title">关于</div>
+      <div class="about-content">
+        <p class="cnode">CNode：Node.js专业中文社区</p>
+        <ul>
+          在这里你可以：
+          <li>向别人提出你遇到的问题</li>
+          <li>帮助遇到问题的人</li>
+          <li>分享自己的知识</li>
+          <li>和其它人一起进步</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,12 +38,18 @@ export default {
     }
   },
   methods: {
-    publish () {
+    pl () {
       // 判断当前路由name来决定是否显示配置项目
+      return oneOf(this.routeName, List.pl)
+    },
+    publish () {
       return oneOf(this.routeName, List.pubList)
     },
     adList () {
       return oneOf(this.routeName, List.adList)
+    },
+    about () {
+      return oneOf(this.routeName, List.about)
     }
   }
 }
@@ -52,6 +72,7 @@ export default {
     }
     .github-sign {
       text-decoration: none;
+      font-size: 14px;
       &:hover {
         font-size: 14px;
       }
@@ -66,4 +87,32 @@ export default {
       }
     }
   }
+  .about {
+    font-size: 14px;
+    .about-title {
+      padding: 10px;
+      text-align: left;
+      line-height: 20px;
+      word-break: break-word;
+      background-color: #f6f6f6;
+      border-radius: 3px 3px 0 0;
+    }
+    .about-content {
+      padding: 10px;
+      text-align: left;
+      line-height: 2em;
+      background-color: #fff;
+      border-radius: 0 0 3px 3px;
+      .cnode {
+        font-size: 15px;
+        margin-bottom: 10px;
+        line-height: 26px;
+      }
+      li {
+        margin-left: 20px;
+        list-style-type: disc;
+      }
+    }
+  }
+
 </style>

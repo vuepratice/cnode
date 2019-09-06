@@ -12,7 +12,7 @@
       <router-link class="container-rg-api" :to="{path:'/API'}">API</router-link>
       <a href="/">关于</a>
       <a href="/">注册</a>
-      <a href="/">登录</a>
+      <router-link :to="{path:'/signin'}">登录</router-link>
     </div>
   </div>
 </template>

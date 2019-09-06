@@ -32,6 +32,14 @@ export default new Router({
             default: () => import('@/views/Datails'),
             rightBar: () => import('@/views/rightBar')
           }
+        },
+        {
+          path: '/signin',
+          name: 'signin',
+          components: {
+            default: () => import('@/components/SignIn'),
+            rightBar: () => import('@/views/rightBar')
+          }
         }
       ]
     },
