@@ -8,6 +8,9 @@ import '@/styles/reset.css'
 
 Vue.config.productionTip = false
 
+// 定义全局的变量和方法，使用时，直接this.xxx
+Vue.prototype.$name = 'test'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

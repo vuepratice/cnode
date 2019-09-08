@@ -1,34 +1,34 @@
 <template>
   <div class="panel">
-    <div class="header">
+    <div class="article-header">
       <span class="topic-title">
         <span class="put-top" v-show="isShow">{{showTag()}}</span>
         {{list.title}}
       </span>
       <div class="info">
-        <span>{{"发布于 "+createdTime(list.create_at)}}</span>
+        <span>发布于 {{createdTime(list.create_at)}}</span>
         <span>
           作者
-          <a href="list.author.avatar_url">{{list.author.loginname}}</a>
+          <a v-if="list.author" href="list.author.avatar_url">{{list.author.loginname}}</a>
         </span>
         <span>{{list.visit_count+" 次浏览"}}</span>
         <span>{{"来自 "+tag[list.tab]}}</span>
       </div>
     </div>
-    <div class="container">
-      <div class="content" v-html="list.content"></div>
+    <div class="article-container">
+      <div class="article" v-html="list.content"></div>
     </div>
   </div>
 </template>
 
 <script>
 import { replaylasttime } from '@/utils'
+import { getDatails } from '@/api'
 
 export default {
   data () {
     return {
-      id: '',
-      list: '',
+      list: {},
       isShow: false,
       tag: {
         share: '分享',
@@ -37,8 +37,16 @@ export default {
       }
     }
   },
+  computed: {
+    id () {
+      return this.$route.query.id
+    }
+  },
   created () {
-    this.list = this.$route.query.id
+    getDatails(this.id).then((res) => {
+      this.list = res.data.data
+      console.log(this.list, 'a')
+    })
   },
   methods: {
     // 判断是否为置顶或精华博文
@@ -61,14 +69,14 @@ export default {
 }
 </script>
 
-<style lang="scss" socped>
-.panel{
+<style lang="scss" scoped>
+.panel {
   text-align: left;
   line-height: 20px;
   border-radius: 3px;
   word-break: break-word;
   font-family: "Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB",STHeiti,sans-serif!important;
- .header {
+ .article-header {
    padding: 10px;
    color: #333;
    .topic-title{
@@ -90,7 +98,7 @@ export default {
      }
    }
  }
- .info{
+ .info {
    color: #838383;
    font-size: 12px;
    overflow: hidden;
@@ -104,12 +112,13 @@ export default {
      }
    }
  }
- .container {
+ .article-container {
    padding: 10px;
    border-top: 1px solid #e5e5e5;
-   .content {
+   .article {
      margin: 0 10px;
     .markdown-text {
+      font-size: 20px;
       &>:first-child{
         margin: 0;
       }
@@ -119,7 +128,7 @@ export default {
         border-bottom: 1px solid #eee;
         line-height: 40px;
         font-weight: 700;
-        }
+      }
       p {
         font-size: 15px;
         line-height: 1.7em;

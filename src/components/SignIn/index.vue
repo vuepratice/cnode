@@ -6,10 +6,9 @@
     </div>
     <div class="signin">
       <span>用户名</span>
-      <input type="text"><br>
-      <span>密码</span>
-      <input type="password" name="" id=""><br>
-      <button>登录</button>
+      <input type="text" v-model="loginname"><br>
+      <span>:{{loginname}}</span><br>
+      <button @click="signIn()">登录</button>
       <button>通过GitHub登录</button>
       <a href="">忘记密码了?</a>
     </div>
@@ -17,12 +16,28 @@
 </template>
 
 <script>
-export default {
+import { postAccessToken } from '@/api'
 
+export default {
+  data () {
+    return {
+      loginname: '',
+      user: {}
+    }
+  },
+  methods: {
+    signIn () {
+      // 验证用户的accesstoken来获取用户详情，然后把该值存储在Local Storage
+      postAccessToken({ accesstoken: this.loginname }).then((ren) => {
+        this.user = ren.data
+        console.log(this.user)
+      })
+    }
+  }
 }
 </script>
 
-<style lang="scss" socped>
+<style lang="scss" scoped>
   .header {
     padding: 10px;
     text-align: left;

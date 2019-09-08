@@ -8,7 +8,7 @@
           <!-- 对象访问方式 -->
           <!-- <span v-if="item.tab">{{tag[item.tab]}}</span> -->
           <span class="tag" :class="{'active-tag': activeTag(item)}" v-if="item.tab">{{displayTag(item)}}</span>
-          <router-link class="toptic-title" :to="{path:'/datails', query:{id:item}}">{{item.title}}</router-link>
+          <router-link class="toptic-title" :to="{path:'/datails', query:{id: item.id}}">{{item.title}}</router-link>
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style lang="scss" socped>
+<style lang="scss" scoped>
     .topic-contain {
       min-height: 500px;
     }
