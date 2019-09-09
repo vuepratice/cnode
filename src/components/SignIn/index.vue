@@ -8,8 +8,8 @@
       <span>用户名</span>
       <input type="text" v-model="loginname"><br>
       <span>:{{loginname}}</span><br>
-      <button @click="signIn()">登录</button>
-      <button>通过GitHub登录</button>
+      <router-link @click="signIn()" :to="{path: gohome}">登录</router-link>
+      <span>{{xxx}}</span>
       <a href="">忘记密码了?</a>
     </div>
   </div>
@@ -25,11 +25,22 @@ export default {
       user: {}
     }
   },
+  computed: {
+    // 测试读取vuex的state.userAccesstoken状态
+    xxx () {
+      return this.$store.state.userAccesstoken.loginname
+    },
+    // 若是成功返回首页
+    gohome () {
+      return '/'
+    }
+  },
   methods: {
     signIn () {
       // 验证用户的accesstoken来获取用户详情，然后把该值存储在Local Storage
       postAccessToken({ accesstoken: this.loginname }).then((ren) => {
         this.user = ren.data
+        this.$store.commit('userInfor', ren.data) // commit改变state.userAccesstoken
         console.log(this.user)
       })
     }

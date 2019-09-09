@@ -28,7 +28,7 @@ import { getDatails } from '@/api'
 export default {
   data () {
     return {
-      list: {},
+      list: '',
       isShow: false,
       tag: {
         share: '分享',
@@ -117,7 +117,12 @@ export default {
    border-top: 1px solid #e5e5e5;
    .article {
      margin: 0 10px;
-    .markdown-text {
+   }
+ }
+}
+</style>
+<style lang="scss">
+  .markdown-text {
       font-size: 20px;
       &>:first-child{
         margin: 0;
@@ -216,8 +221,5 @@ export default {
       .str {
         color: #080;
       }
-    }
-   }
- }
-}
+  }
 </style>
