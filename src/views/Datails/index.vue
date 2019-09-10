@@ -28,7 +28,7 @@ import { getDatails } from '@/api'
 export default {
   data () {
     return {
-      list: '',
+      list: {},
       isShow: false,
       tag: {
         share: '分享',
@@ -45,7 +45,7 @@ export default {
   created () {
     getDatails(this.id).then((res) => {
       this.list = res.data.data
-      console.log(this.list, 'a')
+      // console.log(this.list, 'a')
     })
   },
   methods: {

@@ -56,7 +56,7 @@ export default {
     // 根据tab值获取相应的tab的topic数据
     changeTabData (tab) {
       this.isLoading = true
-      console.log(tab)
+      // console.log(tab)
       this.tabTag = tab // 保存该tab，为下面翻页使用
       // this.page = 1 // 复位翻页插件（不可行，该变量指向是初始页码值）
       this.getListData()
@@ -66,14 +66,14 @@ export default {
       this.$store.dispatch('goTop')
       getTopic({ page: this.page, tab: this.tabTag, limit: this.limit }).then((res) => {
         this.list = res.data.data
-        console.log(this.list)
+        // console.log(this.list)
         this.isLoading = false
       })
     },
     // 根据page值获取相应page的topic数据
     getPageData (data) {
       this.isLoading = true
-      console.log(data.page)
+      console.log('页数为：' + data.page)
       this.page = data.page
       this.getListData()
     }

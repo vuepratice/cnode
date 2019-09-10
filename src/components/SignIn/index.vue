@@ -8,7 +8,7 @@
       <span>用户名</span>
       <input type="text" v-model="loginname"><br>
       <span>:{{loginname}}</span><br>
-      <router-link @click="signIn()" :to="{path: gohome}">登录</router-link>
+      <button @click="signIn()">登录</button>
       <span>{{xxx}}</span>
       <a href="">忘记密码了?</a>
     </div>
@@ -22,7 +22,8 @@ export default {
   data () {
     return {
       loginname: '',
-      user: {}
+      user: {},
+      cat: ''
     }
   },
   computed: {
@@ -32,7 +33,7 @@ export default {
     },
     // 若是成功返回首页
     gohome () {
-      return '/'
+      return ''
     }
   },
   methods: {
@@ -41,7 +42,13 @@ export default {
       postAccessToken({ accesstoken: this.loginname }).then((ren) => {
         this.user = ren.data
         this.$store.commit('userInfor', ren.data) // commit改变state.userAccesstoken
+        localStorage.setItem('accesstoken', this.loginname) // 把accesstoken保存在浏览器localStorage
+        localStorage.setItem('accesstokenReturn', this.user) // 把验证后的返回值保存在浏览器localStorage
         console.log(this.user)
+        this.cat = localStorage.getItem('accesstokenReturn')
+        console.log(this.cat)
+        // 路由跳转
+        this.$router.push({path: '/'})
       })
     }
   }
