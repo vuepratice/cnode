@@ -13,6 +13,7 @@
       <a href="/">关于</a>
       <a href="/">注册</a>
       <router-link :to="{path:'/signin'}">登录</router-link>
+      <!-- <a @click="signOut()">退出</a> -->
     </div>
   </div>
 </template>
@@ -28,6 +29,12 @@ export default {
     search () {
       // 改变store的值
       this.$store.commit('SET_SEARCHTEXT', this.searchText)
+    },
+    // 退出清除localstorage的数据
+    signOut () {
+      localStorage.removeItem('accesstoken')
+      localStorage.removeItem('accesstokenReturn')
+      this.$router.push({path: '/'}) // 跳转至首页
     }
   }
 }

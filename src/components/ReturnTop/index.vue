@@ -17,7 +17,7 @@ export default {
     // 获取活动区域元素的ID，要在元素挂载(mounted)后去获取，即页面渲染后才能获取元素
     // this.toTopEle = document.getElementById('mainContainer') // 方法1获取
     this.toTopEle = document.body.querySelector('#mainContainer') // 方法2获取
-    console.log(this.toTopEle)
+    // console.log(this.toTopEle)
     // 滚屏显示返回顶部元素
     this.toTopEle.addEventListener('scroll', this.getScroll)
   },

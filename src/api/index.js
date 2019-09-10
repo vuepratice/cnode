@@ -27,3 +27,11 @@ export function postAccessToken (params) {
     params
   })
 }
+
+// 根据accesstoken验证正确返回的loginname请求用户详情
+export function getUserDetails (loginname) {
+  return request({
+    url: `/user/${loginname}`,
+    method: 'get'
+  })
+}

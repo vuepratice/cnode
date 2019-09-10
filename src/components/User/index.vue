@@ -18,16 +18,24 @@
 </template>
 
 <script>
+import { getUserDetails } from '@/api'
+
 export default {
   name: 'User',
   data () {
-    return{
-      user: {}
+    return {
+      user: ''
     }
   },
-methods: {
-  
-}
+  created () {
+    this.user = localStorage.getItem('accesstokenReturn')
+    console.log('用户名：' + this.user.loginname)
+    getUserDetails({loginname: this.user.loginname}).then((ren) => {
+      console.log('用户详细数据：' + ren)
+    })
+  },
+  methods: {
+  }
 }
 </script>
 

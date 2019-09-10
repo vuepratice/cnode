@@ -1,15 +1,17 @@
 <template>
   <div>
-    <!-- 公共 -->
+    <!-- 公共用户未登陆 -->
     <div class="item  personal-details" v-if="pl()">
       <p class="cnode">CNode：Node.js专业中文社区</p>
       <router-link class= "github-sign" :to="{path:'/signin'}"><span>登录</span></router-link>
     </div>
-
+    <!-- 用户信息，登录后 -->
+    <User/>
+    <!-- 发布话题 -->
     <div class="item" v-if="publish()">发布话题</div>
-
+    <!-- ad -->
     <div class="item" v-if="adList()">广告栏</div>
-
+    <!-- 登录页显示的关于 -->
     <div class="about" v-if="about()">
       <div class="about-title">关于</div>
       <div class="about-content">
@@ -30,7 +32,10 @@
 // 右侧栏，根据不同到路由，显示不同到模块
 import { oneOf } from '@/utils'
 import List from './config'
+import User from '@/components/User'
+
 export default {
+  components: { User },
   computed: {
     routeName () {
       // return当前路由的界面name

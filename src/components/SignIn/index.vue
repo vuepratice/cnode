@@ -22,7 +22,7 @@ export default {
   data () {
     return {
       loginname: '',
-      user: {},
+      user: '',
       cat: ''
     }
   },
@@ -43,10 +43,10 @@ export default {
         this.user = ren.data
         this.$store.commit('userInfor', ren.data) // commit改变state.userAccesstoken
         localStorage.setItem('accesstoken', this.loginname) // 把accesstoken保存在浏览器localStorage
-        localStorage.setItem('accesstokenReturn', this.user) // 把验证后的返回值保存在浏览器localStorage
-        console.log(this.user)
+        localStorage.setItem('accesstokenReturn', JSON.stringify(ren.data)) // 把验证后的返回值保存在浏览器localStorage
+        console.log('用户验证后返回数据：' + this.user)
         this.cat = localStorage.getItem('accesstokenReturn')
-        console.log(this.cat)
+        console.log('保存在localstorage的数据：' + this.cat)
         // 路由跳转
         this.$router.push({path: '/'})
       })
