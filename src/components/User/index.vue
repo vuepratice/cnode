@@ -28,10 +28,10 @@ export default {
     }
   },
   created () {
-    this.user = localStorage.getItem('accesstokenReturn')
-    console.log('用户名：' + this.user.loginname)
-    getUserDetails({loginname: this.user.loginname}).then((ren) => {
-      console.log('用户详细数据：' + ren)
+    this.user = JSON.parse(localStorage.getItem('accesstokenReturn'))
+    console.log('用户名：', this.user.loginname)
+    getUserDetails(this.user.loginname).then((res) => {
+      console.log('用户详细数据：', res)
     })
   },
   methods: {
