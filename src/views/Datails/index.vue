@@ -13,6 +13,11 @@
         </span>
         <span>{{list.visit_count+" 次浏览"}}</span>
         <span>{{"来自 "+tag[list.tab]}}</span>
+        <input class="collect-btn"
+          :class="{'for-collection': isActive, 'cancel-collection': !isActive}"
+          type="submit"
+          :value="isCollection"
+          @click="collectOrCancel()"/>
       </div>
     </div>
     <div class="article-container">
@@ -23,18 +28,21 @@
 
 <script>
 import { replaylasttime } from '@/utils'
-import { getDatails } from '@/api'
+import { getDatails, topicCollect, deleteCollect } from '@/api'
 
 export default {
   data () {
     return {
       list: {},
       isShow: false,
+      isActive: true,
       tag: {
         share: '分享',
         ask: '问答',
         job: '招聘'
-      }
+      },
+      isCollection: '收藏',
+      accesstoken: ''
     }
   },
   computed: {
@@ -45,7 +53,8 @@ export default {
   created () {
     getDatails(this.id).then((res) => {
       this.list = res.data.data
-      // console.log(this.list, 'a')
+      console.log('主题详情数据：', this.list)
+      this.accesstoken = localStorage.getItem('accesstoken')
     })
   },
   methods: {
@@ -64,6 +73,18 @@ export default {
     // 时间处理
     createdTime (time) {
       return replaylasttime(time)
+    },
+    // 收藏或取消收藏
+    collectOrCancel () {
+      if (this.isActive) {
+        this.isActive = false
+        this.isCollection = '取消收藏'
+        topicCollect({accesstoken: this.accesstoken, topic_id: this.list})
+      } else {
+        this.isActive = true
+        this.isCollection = '收藏'
+        deleteCollect({accesstoken: this.accesstoken, topic_id: this.list})
+      }
     }
   }
 }
@@ -109,6 +130,33 @@ export default {
      color: inherit;
      &:hover {
        text-decoration: underline;
+     }
+   }
+   .collect-btn {
+     float: right;
+     width: auto;
+     cursor: pointer;
+     border: none;
+     display: inline-block;
+     padding: 3px 10px;
+     margin: 0;
+     font-size: 14px;
+     line-height: 2em;
+     vertical-align: middle;
+     color: #fff;
+   }
+   .for-collection {
+     border-radius: 3px;
+     background-color: #80bd01;
+     &:hover {
+       background-color: #6ba44e;
+     }
+   }
+   .cancel-collection {
+     border-radius: 3px;
+     background-color: #e5e5e5;
+     &:hover {
+       background-color: #909090;
      }
    }
  }

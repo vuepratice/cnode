@@ -35,3 +35,21 @@ export function getUserDetails (loginname) {
     method: 'get'
   })
 }
+
+// 收藏主题
+export function topicCollect (params) {
+  return request({
+    url: '/topic_collect/collect',
+    method: 'post',
+    params
+  })
+}
+
+// 取消主题
+export function deleteCollect (params) {
+  return request({
+    url: '/topic_collect/de_collect',
+    method: 'post',
+    params
+  })
+}
