@@ -8,12 +8,14 @@
     </div>
     <div class="container-rg">
       <router-link class="container-rg-api" :to="{path:'/'}">首页</router-link>
+      <a href="/" v-if="isSignIn">未读消息</a>
       <a href="/">新手入门</a>
       <router-link class="container-rg-api" :to="{path:'/API'}">API</router-link>
       <a href="/">关于</a>
-      <a href="/">注册</a>
-      <router-link :to="{path:'/signin'}">登录</router-link>
-      <!-- <a @click="signOut()">退出</a> -->
+      <a href="/" v-if="!isSignIn">注册</a>
+      <router-link :to="{path:'/signin'}" v-if="!isSignIn">登录</router-link>
+      <a href="/" v-if="isSignIn">设置</a>
+      <a href="/" @click="signOut()" v-if="isSignIn">退出</a>
     </div>
   </div>
 </template>
@@ -22,8 +24,12 @@
 export default {
   data () {
     return {
-      searchText: ''
+      searchText: '',
+      isSignIn: false
     }
+  },
+  created () {
+    this.isSignIn = JSON.parse(localStorage.getItem('accesstokenReturn')).success
   },
   methods: {
     search () {

@@ -2,11 +2,11 @@
 export function oneOf (value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
-      console.log('t', value, validList[i])
+      // console.log('t', value, validList[i])
       return true
     }
   }
-  console.log('f')
+  // console.log('f')
   return false
 }
 export function replaylasttime (time) {

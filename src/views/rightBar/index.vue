@@ -1,12 +1,12 @@
 <template>
   <div>
-    <!-- 公共用户未登陆 -->
-    <div class="item  personal-details" v-if="pl()">
+    <!-- 公共 用户未登陆 -->
+    <div class="item  personal-details" v-if="pl()&&!isSignIn">
       <p class="cnode">CNode：Node.js专业中文社区</p>
       <router-link class= "github-sign" :to="{path:'/signin'}"><span>登录</span></router-link>
     </div>
-    <!-- 用户信息，登录后 -->
-    <User/>
+    <!-- 公共 用户信息，登录后 -->
+    <User v-if="pl()&&isSignIn"/>
     <!-- 发布话题 -->
     <div class="item" v-if="publish()">发布话题</div>
     <!-- ad -->
@@ -36,6 +36,15 @@ import User from '@/components/User'
 
 export default {
   components: { User },
+  data () {
+    return {
+      isSignIn: false
+    }
+  },
+  created () {
+    this.isSignIn = JSON.parse(localStorage.getItem('accesstokenReturn')).success
+    console.log('用户是否登录：', this.isSignIn)
+  },
   computed: {
     routeName () {
       // return当前路由的界面name
