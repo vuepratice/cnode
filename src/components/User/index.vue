@@ -5,12 +5,12 @@
     </div>
     <div class="user-inner">
       <div>
-        <a href="/" class="user-avatar"><img :src="userDetails.data.avatar_url" :title="userDetails.data.loginname"/></a>
+        <a href="/" class="user-avatar"><img :src="userDetails.avatar_url" :title="userDetails.loginname"/></a>
         <span class="user-name">
-          <a href="/">{{userDetails.data.loginname}}</a>
+          <a href="/">{{userDetails.loginname}}</a>
         </span>
         <div class="board">
-          <span>积分：{{userDetails.data.score}}</span>
+          <span>积分：{{userDetails.score}}</span>
         </div>
         <div class="signature">
           <span></span>
@@ -34,9 +34,9 @@ export default {
   created () {
     this.user = JSON.parse(localStorage.getItem('accesstokenReturn'))
     console.log('用户名：', this.user.loginname)
-    getUserDetails(this.user.loginname).then((res) => {
-      this.userDetails = res.data
-      console.log('用户详细数据：', res)
+    getUserDetails(this.user.loginname).then(({data}) => {
+      this.userDetails = data.data
+      console.log('用户详细数据：', data)
     })
   },
   methods: {

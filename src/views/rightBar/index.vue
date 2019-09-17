@@ -50,6 +50,9 @@ export default {
       // return当前路由的界面name
       return this.$route.name
     }
+    // user () {
+    //   return
+    // }
   },
   methods: {
     pl () {
