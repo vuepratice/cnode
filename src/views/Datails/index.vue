@@ -83,7 +83,7 @@ export default {
       } else {
         this.isActive = true
         this.isCollection = '收藏'
-        deleteCollect({accesstoken: this.accesstoken, topic_id: this.list})
+        deleteCollect({accesstoken: this.accesstoken, topic_id: this.listy})
       }
     }
   }
