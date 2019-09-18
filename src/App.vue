@@ -6,7 +6,11 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  // 先去读取localStorage的用户数据数据，也可以防止刷新网页后，store里面的数据清空而丢失用户数据
+  created () {
+    this.$store.commit('userInfor', JSON.parse(localStorage.getItem('accesstokenReturn')))
+  }
 }
 </script>
 

@@ -48,7 +48,7 @@ export default {
     height: 50px;
     width: 30px;
     bottom: 150px;
-    right: 20px;
+    right: 50px;
     cursor: pointer;
     line-height: 22px;
     border-radius: 3px;

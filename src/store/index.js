@@ -6,7 +6,9 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     searchText: '', // 顶部导航搜索内容
-    userAccesstoken: {} // accesstoken验证正确后存储的用户名
+    userAccesstoken: {
+      success: false
+    } // accesstoken验证正确后存储的用户名
   },
   mutations: {
     // 设置搜索内容
@@ -14,7 +16,9 @@ const store = new Vuex.Store({
       state.searchText = text
     },
     userInfor (state, user) {
-      state.userAccesstoken = user
+      if (user) { // 判断：如果传过来的数据不为空，则保存
+        state.userAccesstoken = user
+      }
     }
   },
   actions: {

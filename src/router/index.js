@@ -40,6 +40,14 @@ export default new Router({
             default: () => import('@/components/SignIn'),
             rightBar: () => import('@/views/rightBar')
           }
+        },
+        {
+          path: '/more',
+          name: 'more',
+          components: {
+            default: () => import('@/views/more'),
+            rightBar: () => import('@/views/rightBar')
+          }
         }
       ]
     },

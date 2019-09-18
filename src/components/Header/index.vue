@@ -1,21 +1,21 @@
 <template>
   <div class="container">
     <div class="container-lf">
-      <a href="/" class="logo">
+      <router-link class="logo" :to="{path:'/'}">
         <img src="@/assets/cnode.svg" alt="cnode">
-      </a>
+      </router-link>
       <input class="search" @keyup.enter="search" placeholder="请输入" v-model.trim="searchText" type="text">
     </div>
     <div class="container-rg">
       <router-link class="container-rg-api" :to="{path:'/'}">首页</router-link>
-      <a href="/" v-if="isSignIn">未读消息</a>
-      <a href="/">新手入门</a>
+      <router-link v-if="login" :to="{path: '/more'}">未读消息</router-link>
+      <router-link :to="{path: '/more'}">新手入门</router-link>
       <router-link class="container-rg-api" :to="{path:'/API'}">API</router-link>
-      <a href="/">关于</a>
-      <a href="/" v-if="!isSignIn">注册</a>
-      <router-link :to="{path:'/signin'}" v-if="!isSignIn">登录</router-link>
-      <a href="/" v-if="isSignIn">设置</a>
-      <a href="/" @click="signOut()" v-if="isSignIn">退出</a>
+      <router-link :to="{path: '/more'}">关于</router-link>
+      <router-link v-if="!login" :to="{path: '/more'}">注册</router-link>
+      <router-link :to="{path:'/signin'}" v-if="!login">登录</router-link>
+      <router-link v-if="login" :to="{path: '/more'}">设置</router-link>
+      <a href="/" @click="signOut()" v-if="login">退出</a>
     </div>
   </div>
 </template>
@@ -28,8 +28,10 @@ export default {
       isSignIn: false
     }
   },
-  created () {
-    this.isSignIn = JSON.parse(localStorage.getItem('accesstokenReturn')).success
+  computed: {
+    login () {
+      return this.$store.state.userAccesstoken.success
+    }
   },
   methods: {
     search () {
@@ -81,6 +83,9 @@ export default {
     transition: all .5s;
     &:hover {
       background-color: #fff;
+    }
+    &:focus {
+      outline: none;
     }
   }
   .container-rg {
