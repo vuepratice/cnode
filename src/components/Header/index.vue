@@ -15,7 +15,7 @@
       <router-link v-if="!login" :to="{path: '/more'}">注册</router-link>
       <router-link :to="{path:'/signin'}" v-if="!login">登录</router-link>
       <router-link v-if="login" :to="{path: '/more'}">设置</router-link>
-      <a href="/" @click="signOut()" v-if="login">退出</a>
+      <router-link  @click="signOut()" v-if="login">退出</router-link >
     </div>
   </div>
 </template>
