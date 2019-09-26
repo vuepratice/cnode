@@ -18,6 +18,8 @@ const store = new Vuex.Store({
     userInfor (state, user) {
       if (user) { // 判断：如果传过来的数据不为空，则保存
         state.userAccesstoken = user
+      } else {
+        state.userAccesstoken.success = false
       }
     }
   },

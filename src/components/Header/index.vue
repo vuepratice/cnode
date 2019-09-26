@@ -7,15 +7,15 @@
       <input class="search" @keyup.enter="search" placeholder="请输入" v-model.trim="searchText" type="text">
     </div>
     <div class="container-rg">
-      <router-link class="container-rg-api" :to="{path:'/'}">首页</router-link>
+      <router-link :to="{path:'/'}">首页</router-link>
       <router-link v-if="login" :to="{path: '/more'}">未读消息</router-link>
       <router-link :to="{path: '/more'}">新手入门</router-link>
-      <router-link class="container-rg-api" :to="{path:'/API'}">API</router-link>
+      <router-link :to="{path:'/API'}">API</router-link>
       <router-link :to="{path: '/more'}">关于</router-link>
       <router-link v-if="!login" :to="{path: '/more'}">注册</router-link>
       <router-link :to="{path:'/signin'}" v-if="!login">登录</router-link>
       <router-link v-if="login" :to="{path: '/more'}">设置</router-link>
-      <router-link @click="signOut()" v-if="login">退出</router-link>
+      <a class="container-rg-api" @click="signOut()" v-if="login">退出</a>
     </div>
   </div>
 </template>
@@ -38,10 +38,12 @@ export default {
       // 改变store的值
       this.$store.commit('SET_SEARCHTEXT', this.searchText)
     },
-    // 退出清除localstorage的数据
     signOut () {
+      // 退出清除localstorage的数据
       localStorage.removeItem('accesstoken')
       localStorage.removeItem('accesstokenReturn')
+      // 提交空数据，来改变store的状态，从而改变页面渲染
+      this.$store.commit('userInfor', '')
       this.$router.push({path: '/'}) // 跳转至首页
     }
   }
@@ -94,7 +96,12 @@ export default {
     }
     .container-rg-api {
       padding: 10px 15px;
+      font-size: 12px;
+      color: #ccc;
     }
+    // span {
+    //   display: inline-block;
+    //   cursor: pointer;
+    // }
   }
-
 </style>

@@ -30,10 +30,6 @@ export default {
     // 测试读取vuex的state.userAccesstoken状态
     xxx () {
       return this.$store.state.userAccesstoken.loginname
-    },
-    // 若是成功返回首页
-    gohome () {
-      return ''
     }
   },
   methods: {
