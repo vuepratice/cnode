@@ -93,6 +93,10 @@ export default {
   .container-rg {
     a {
       padding: 10px 15px;
+      cursor: pointer;
+      &:hover {
+        color: #fff;
+      }
     }
     .container-rg-api {
       padding: 10px 15px;
